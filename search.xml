@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Markdown高级语法</title>
+    <url>/markdown-advance-syntax.html</url>
+    <content><![CDATA[<p>只有少数编辑器支持，或者需要安装相应的扩展渲染，使用前请先预览确认。</p>
+<span id="more"></span>
+
+<h1 id="定义列表"><a href="#定义列表" class="headerlink" title="定义列表"></a>定义列表</h1><figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">Term 1</span><br><span class="line">Term 2</span><br><span class="line">:   Definition A</span><br><span class="line">:   Definition B</span><br></pre></td></tr></table></figure>
+
+<p>会被编译成</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span>Term 1<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dd</span>&gt;</span>Term 2<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span>Definition A<span class="tag">&lt;<span class="name">dt</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dt</span>&gt;</span>Definition A<span class="tag">&lt;<span class="name">dt</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><p>通过<code>[TOC]</code>标记来插入目录。</p>
+<p>在编辑器不支持<code>[TOC]</code>标记的情况下可以使用添加id的方法构建目录。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section">## Directory</span></span><br><span class="line"><span class="bullet">*</span> [<span class="string">1.Content one</span>](<span class="link">#chapter1</span>)</span><br><span class="line"><span class="bullet">*</span> [<span class="string">2.Content two</span>](<span class="link">#chapter2</span>)</span><br><span class="line"></span><br><span class="line"><span class="section">## <span class="language-xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;chapter1&quot;</span>&gt;</span></span>1.Content one<span class="language-xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span></span><br><span class="line"><span class="section">## <span class="language-xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">&quot;chapter2&quot;</span>&gt;</span></span>2.Content two<span class="language-xml"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="TeX公式"><a href="#TeX公式" class="headerlink" title="TeX公式"></a>TeX公式</h1><p>内联的TeX公式使用一个美元符号标记。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$</span><br></pre></td></tr></table></figure>
+
+<p>会被编译成<br>内联（行内）公式：$\Gamma(n) &#x3D; (n-1)!\quad\forall n\in\mathbb N$</p>
+<p>TeX公式块用独占一行的两个美元符号来标记。</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">$$\left \lbrace \sum<span class="emphasis">_&#123;i=0&#125;^n i^3 = \frac&#123;(n^2+n)(n+6)&#125;&#123;9&#125; \right \rbrace$$</span></span><br></pre></td></tr></table></figure>
+
+<p>会被编译成</p>
+<p>$$\left \lbrace \sum_{i&#x3D;0}^n i^3 &#x3D; \frac{(n^2+n)(n+6)}{9} \right \rbrace$$</p>
+<p>如果你的编辑器不支持这个功能，可以手动解决。首先引入mathjax脚本：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>之后，在需要插入公式的地方使用 <code>&lt;script&gt;</code> 标签包裹公式：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;math/tex&quot;</span>&gt;</span></span>\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N<span class="language-xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;math/tex; mode=display&quot;</span>&gt;</span></span></span><br><span class="line">\Gamma(z) = \int<span class="emphasis">_0^\infty t^&#123;z-1&#125;e^&#123;-t&#125;dt\,.</span></span><br><span class="line"><span class="emphasis"><span class="language-xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span></span><br></pre></td></tr></table></figure>
+
+<p>以上公式展示效果，在实际显示过程中，根据网络加载速度不同会有不同的解析展示速度，TeX的语法参考请见<a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">这里</a>。</p>
+<h1 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h1><p>语法为在代码块开始行后面加入语法声明，如 ```mermaid ，然后可以像这样来画uml时序图：</p>
+<pre class="mermaid">sequenceDiagram
+  Alice->>Bob: Hello Bob,how are you?
+  Note right of Bob: Bob thinks
+  Bob-->>Alice: I am fine thanks! and U?
+  Note left of Alice: SB</pre>
+
+<p>其MarkDown代码如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">\<span class="code">`\`</span>\`mermaid</span><br><span class="line">sequenceDiagram</span><br><span class="line">  Alice-&gt;&gt;Bob: Hello Bob,how are you?</span><br><span class="line">  Note right of Bob: Bob thinks</span><br><span class="line">  Bob--&gt;&gt;Alice: I am fine thanks! and U?</span><br><span class="line">  Note left of Alice: SB</span><br><span class="line">\<span class="code">`\`</span>\` #代码块标识会被解析，实际上写代码块时不用添加转义符“\”</span><br></pre></td></tr></table></figure>
+
+<p>时序图的语法请见 <a href="https://mermaidjs.github.io/sequenceDiagram.html">这里</a> 或 <a href="http://bramp.github.io/js-sequence-diagrams/">这里</a>。</p>
+<p>uml流程图：</p>
+<pre class="mermaid">  graph LR;
+    A-->B & C-->D;</pre>
+
+<p>其实现代码如下：</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">\<span class="code">`\`</span>\`mermaid</span><br><span class="line">graph LR;</span><br><span class="line">  A--&gt;B &amp; C--&gt;D;</span><br><span class="line">\<span class="code">`\`</span>\`</span><br></pre></td></tr></table></figure>
+
+<p>流程图的语法请见 <a href="https://mermaidjs.github.io/flowchart.html">这里</a>， 更复杂点的flowchart可以看 <a href="http://adrai.github.io/flowchart.js/">这里</a> 。</p>
+<h1 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h1><ol>
+<li><a href="/how-to-draw-flowchart-with-markdown.html">MarkDown文档中如何画出流程图</a></li>
+<li><a href="https://github.com/wizardforcel/markdown-simple-world">https://github.com/wizardforcel/markdown-simple-world</a></li>
+<li><a href="http://stevenshi.me/2017/06/26/hexo-insert-formula/">http://stevenshi.me/2017/06/26/hexo-insert-formula/</a></li>
+<li><a href="https://blog.csdn.net/u013282174/article/details/80666123">https://blog.csdn.net/u013282174/article/details/80666123</a></li>
+<li><a href="https://www.liuyude.com/How_to_make_your_HEXO_blog_support_handwriting_flowchart.html">https://www.liuyude.com/How_to_make_your_HEXO_blog_support_handwriting_flowchart.html</a></li>
+<li><a href="https://mermaidjs.github.io/">https://mermaidjs.github.io/</a></li>
+</ol>
+<script type="text/javascript" async
+  src="https://unpkg.com/mermaid@9.1.1/dist/mermaid.min.js">
+</script>
+]]></content>
+      <categories>
+        <category>学编程</category>
+      </categories>
+      <tags>
+        <tag>混技能</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学术简历样本</title>
+    <url>/academia-example.html</url>
+    <content><![CDATA[<blockquote>
+<p>这是个简历示例页，内容源文件：<code>source/_posts/academia-example.md</code></p>
+</blockquote>
+<blockquote>
+<p>如果本页排序在站内靠后，该页内容不会在 <code>Academia</code> 主题首页显示，如果遇到不显示的问题，删除其他内容或者将本页排序调整到靠前几页，如：修改本文档 <code>date</code> 值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">date: 2023-8-22 16:59:16    //修改这个时间到最新一般就排前面去了</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="About-me"><a href="#About-me" class="headerlink" title="About me"></a>About me</h1><p>This is a simple page for academic website based on Hexo. It just provides a theme frame and all depends on your markdown posts’ styles.</p>
+<p>This is the index page which organized with the posts you write in markdown files.</p>
+<h1 id="News"><a href="#News" class="headerlink" title="News"></a>News</h1><ul>
+<li>2020-04-23: ver 1.2.0 publish, support pjax.</li>
+<li>2020 February, Join in Test University.</li>
+<li>A new theme for academic page is published.</li>
+</ul>
+<h1 id="Publications"><a href="#Publications" class="headerlink" title="Publications"></a>Publications</h1><ol>
+<li>Einstein, Albert, Boris Podolsky, and Nathan Rosen. “Can quantum-mechanical description of physical reality be considered complete?.” Physical review 47.10 (1935): 777.</li>
+<li>Einstein, Albert, Boris Podolsky, and Nathan Rosen. “Can quantum-mechanical description of physical reality be considered complete?.” Physical review 47.10 (1935): 777.</li>
+</ol>
+<p>Add more informations in your posts…</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>This is a light &amp; simple &amp; responsive theme for academic websites on Hexo, crafted from <a href="https://github.com/academicpages/academicpages.github.io">academicpages</a> on Jekyll. Thanks a lot.</p>
+<p>The theme adopts only <code>post</code> and <code>page</code> in Hexo to show your informations. For an academic page, it’s important to be simple and obvious.</p>
+<p>Example page: <a href="https://phosphorw.github.io/">phosphorw.github.io</a></p>
+<p><img src="https://raw.githubusercontent.com/PhosphorW/phower-img-folder/master/hexo-theme-academia_mockup.jpg" alt="mockup"></p>
+<h2 id="Preparation"><a href="#Preparation" class="headerlink" title="Preparation"></a>Preparation</h2><p>Some skills you need:</p>
+<ul>
+<li>Publish a Hexo blog: <a href="https://hexo.io/">Learn more</a></li>
+<li>Git</li>
+<li>Markdown: <a href="https://www.appinn.com/markdown/#list">Learn more</a></li>
+<li>Deploy a server (Optional)</li>
+<li>Balabala…</li>
+</ul>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>The simplest way to install is to clone the entire repository:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/PhosphorW/hexo-theme-academia.git themes/Academia</span><br></pre></td></tr></table></figure>
+
+<p>Some required renderers:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure>
+
+<p>Set theme in hexo work folder’s <code>_config.yml</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">theme: Academia</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-your-academic-page"><a href="#Create-your-academic-page" class="headerlink" title="Create your academic page"></a>Create your academic page</h2><p>Only <code>post</code> and <code>page</code> are supported in this theme.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n post &quot;any title&quot;</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo n page &quot;any title&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Important:</strong> </br><br>Add <code>academia: true</code> in front_matter filed in <code>post .md</code>.</p>
+<img src="https://raw.githubusercontent.com/PhosphorW/phower-img-folder/master/hexo-theme-academia_front-matter.png" width="660px" alt="front_matter">
+
+<p>Only post with <code>academia: true</code> front_matter will be shown on home (index) page. You can write your informations in either one post or some posts with this method. The front_matter doesn’t works in <code>page</code>. The <code>pages</code> are standalone with its markdown content.</p>
+<h2 id="Theme-Configurtion"><a href="#Theme-Configurtion" class="headerlink" title="Theme Configurtion"></a>Theme Configurtion</h2><p>All of below options can be config in theme folder <code>_config.yml</code></p>
+<ul>
+<li>Top Menu: in-page anchor, new page links or any links you like</li>
+<li>Side Bar: Support avatar, social links, extra social links (optional), CV_download_link</li>
+<li>Box-shadow mode (optional)</li>
+</ul>
+<p>All icons in page is supported with <a href="https://fontawesome.com/">font-awesome-5</a> (<del>font-awesome-4</del>)</p>
+<blockquote>
+<p>fontawesome-4 is not used since v1.2.1. If you want to update manually, first change CDN stylesheet to fa5. Then change your previous icon class <code>fa</code> to <code>fas</code> or <code>fas</code>.</p>
+</blockquote>
+<p>If you need rss feed, use hexo plugin: <a href="https://github.com/hexojs/hexo-generator-feed">hexo-generator-feed</a></p>
+<p><img src="https://raw.githubusercontent.com/PhosphorW/phower-img-folder/master/hexo-theme-academia_layout.png" alt="theme-layout"></p>
+<h3 id="Update-Theme"><a href="#Update-Theme" class="headerlink" title="Update Theme"></a>Update Theme</h3><p>This theme supports <code>data files</code> smooth update. Copy <code>_config.yml</code> in theme folder to site folder <code>/source/_data/theme.yml</code>, if there is no <code>_data</code> folder, create it.</p>
+<p>Then you can modify your theme configuration in the mentioned <code>theme.yml</code>. If there is any update, just pull the new branch and your configurations won’t be merged. </p>
+<p><strong>Note:</strong></p>
+<ol>
+<li>When use <code>data files</code> to config theme, you must restart hexo server after any modifictions. <code>hexo server</code> again.</li>
+<li>Sometimes there will be changes in theme <code>_config.yml</code>, please refer to <a href="https://github.com/PhosphorW/hexo-theme-academia/releases">release page</a> for more details before update.</li>
+</ol>
+<h2 id="Document"><a href="#Document" class="headerlink" title="Document"></a>Document</h2><p>中文文档：<a href="https://phower.me/2020/03/Hexo-theme-academia-%E8%AF%B4%E6%98%8E%E6%96%87%E6%A1%A3/">Hexo-Theme-Academia 说明文档</a></p>
+]]></content>
+      <tags>
+        <tag>Example</tag>
+      </tags>
+  </entry>
+</search>
